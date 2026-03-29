@@ -68,9 +68,14 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Bankhead Construction LLC. All rights reserved.
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-gray-500 text-sm">
+            <p>
+              © {new Date().getFullYear()} Bankhead Construction LLC. All rights reserved.
+            </p>
+            <p className="text-gray-400">
+              Built by <a href="https://vici-global.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-white transition-colors font-medium relative top-[0.5px]">Vici Global</a>
+            </p>
+          </div>
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
