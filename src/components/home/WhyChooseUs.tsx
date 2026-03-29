@@ -56,7 +56,7 @@ export default function WhyChooseUs() {
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] md:aspect-[3/4] group border border-white/10 shadow-2xl">
               <div 
                 className="absolute inset-0 bg-cover bg-top transform group-hover:scale-105 transition-transform duration-700" 
-                style={{ backgroundImage: "url('/cedric.jpg')" }}
+                style={{ backgroundImage: "url('/cedric.png')" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
               

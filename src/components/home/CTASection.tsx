@@ -7,7 +7,7 @@ export default function CTASection() {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-fixed z-0"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541888081628-3e4b77fcc652?q=80&w=2070&auto=format&fit=crop')" }}
+        style={{ backgroundImage: "url('/servicepics/contracting.png')" }}
       />
       {/* Overlay */}
       <div className="absolute inset-0 bg-primary/95 z-10 mix-blend-multiply" />
@@ -24,10 +24,11 @@ export default function CTASection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <Link 
             href="/contact" 
-            className="group inline-flex items-center justify-center gap-2 bg-white text-primary px-10 py-5 rounded-md font-bold text-lg hover:bg-gray-100 transition-colors shadow-2xl"
+            className="group relative inline-flex items-center justify-center gap-2 bg-white text-primary px-10 py-5 rounded-md font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-[0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_40px_rgba(255,255,255,0.6)] hover:-translate-y-1 overflow-hidden"
           >
-            Request a Free Estimate
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+            <span className="relative z-10">Request a Free Estimate</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
           </Link>
           
           <a 

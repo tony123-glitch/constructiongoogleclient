@@ -1,6 +1,8 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { CheckCircle2, ArrowRight } from "lucide-react"
+import PageHeader from "@/components/ui/PageHeader"
+import CTASection from "@/components/home/CTASection"
 
 export const metadata: Metadata = {
   title: "Our Services | Bankhead Construction St. Louis",
@@ -31,7 +33,7 @@ export default function ServicesPage() {
       description: "For larger renovations or structural changes, our general construction services provide the expertise needed from framing to finishing.",
       benefits: ["Fully permitted & code-compliant", "Dedicated project management", "High-quality structural lumber"],
       process: ["Consultation & Design", "Permitting", "Demolition & Framing", "Finishing Touches"],
-      image: "/servicepics/contracting.webp"
+      image: "/servicepics/contracting.png"
     },
     {
       id: "painting",
@@ -52,17 +54,12 @@ export default function ServicesPage() {
   ]
 
   return (
-    <div className="min-h-screen pt-24 bg-background">
-      <div className="bg-[#050505] py-20 border-b border-white/5">
-        <div className="container mx-auto px-4 md:px-6 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-white mb-6">
-            Our Construction <span className="text-primary italic">Services</span>
-          </h1>
-          <p className="text-xl text-gray-400">
-            Professional craftsmanship for discerning homeowners in St. Louis.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-background">
+      <PageHeader 
+        title={<>Our Construction <span className="text-primary italic">Services</span></>}
+        subtitle="Professional craftsmanship for discerning homeowners in St. Louis."
+        backgroundImage="/servicepics/decksidingrepair.jpg"
+      />
 
       <div className="container mx-auto px-4 md:px-6 py-20 divide-y divide-white/5">
         {services.map((service, idx) => (
@@ -130,19 +127,7 @@ export default function ServicesPage() {
         ))}
       </div>
 
-      <section className="bg-primary py-20 text-center px-4">
-        <h2 className="text-3xl md:text-4xl font-bold font-heading text-white mb-6">Need Something Else?</h2>
-        <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
-          We handle a wide variety of general repairs and custom projects that might not be listed here. Reach out to discuss your specific needs.
-        </p>
-        <Link 
-          href="/contact" 
-          className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-md font-bold text-lg hover:bg-gray-100 transition-colors shadow-xl"
-        >
-          Contact Our Team
-          <ArrowRight className="w-5 h-5" />
-        </Link>
-      </section>
+      <CTASection />
     </div>
   )
 }

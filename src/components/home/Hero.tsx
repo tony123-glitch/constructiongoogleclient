@@ -7,7 +7,6 @@ import { ArrowRight, Phone } from "lucide-react"
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -28,19 +27,8 @@ export default function Hero() {
     restDelta: 0.001
   })
 
-  // Scrub video
-  useMotionValueEvent(smoothProgress, "change", (latest) => {
-    if (videoRef.current) {
-      const vidDuration = videoRef.current.duration;
-      if (vidDuration && !isNaN(vidDuration)) {
-        requestAnimationFrame(() => {
-          if (videoRef.current) {
-            videoRef.current.currentTime = latest * vidDuration;
-          }
-        });
-      }
-    }
-  })
+  // Scale up the static image slightly as it scrolls to keep it dynamic
+  const imageScale = useTransform(smoothProgress, [0, 1], [1, 1.1])
 
   // Fade out text from 0 to 0.2 of the scroll
   const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0])
@@ -50,7 +38,13 @@ export default function Hero() {
   const deskTop = useTransform(smoothProgress, [0, 0.3], ["20%", "0%"])
   const deskRight = useTransform(smoothProgress, [0, 0.3], ["2%", "0%"])
   const deskBottom = useTransform(smoothProgress, [0, 0.3], ["20%", "0%"])
-  const deskLeft = useTransform(smoothProgress, [0, 0.3], ["52%", "0%"])
+  const deskLeft = useTransform(smoothProgress, [0, 0.3], ["45%", "0%"])
+
+  // Image Centering Fix
+  // Because clipPath cuts a static 100vw image, the center of the image was lost.
+  // We offset X on desktop and Y on mobile initially so the focal point is flawless.
+  const deskImageX = useTransform(smoothProgress, [0, 0.3], ["23vw", "0vw"])
+  const mobImageY = useTransform(smoothProgress, [0, 0.3], ["28vh", "0vh"])
 
   // Mobile clip path
   const mobTop = useTransform(smoothProgress, [0, 0.3], ["60%", "0%"])
@@ -143,18 +137,15 @@ export default function Hero() {
           style={{ clipPath: activeClipPath }}
           className="absolute inset-0 z-10 bg-[#050505] pointer-events-none"
         >
-          <video
-            ref={videoRef}
-            src="/Coolceling.mp4"
-            className="absolute inset-0 w-full h-full object-cover"
-            muted
-            playsInline
-            preload="auto"
-            onLoadedMetadata={() => {
-              if (videoRef.current && !isNaN(videoRef.current.duration)) {
-                videoRef.current.currentTime = smoothProgress.get() * videoRef.current.duration;
-              }
+          <motion.img
+            style={{ 
+              scale: imageScale,
+              x: isMobile ? 0 : deskImageX,
+              y: isMobile ? mobImageY : 0
             }}
+            src="/heropic.png"
+            className="absolute inset-0 w-full h-full object-cover"
+            alt="Hero Project Snapshot"
           />
           <motion.div style={{ opacity: overlayOpacity }} className="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/20 to-transparent" />
           
